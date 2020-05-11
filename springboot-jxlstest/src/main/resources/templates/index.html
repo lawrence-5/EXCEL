@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>jQueryのAjaxを使って外部HTMLの一部を抜き出し挿入する</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+     	<script th:src="@{/js/load.js}"></script>
+    </head>
+    <body>
+    <form id="newform">
+        <h1>ここに外部 HTML ファイルを表示します</h1>
+        <div id="page">dst</div>
+        <div id="page2">dst</div>
+        <input type="button" id="changebtn" value="変更" />
+        </form>
+    </body>
+</html>
