@@ -1,27 +1,19 @@
 package com.example.jxls.controller;
 
-import com.example.jxls.bean.Person;
-import com.example.jxls.view.AutoColumnWidthCommand;
-import com.example.jxls.view.JxlsExcelView;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import org.jxls.area.Area;
-import org.jxls.builder.AreaBuilder;
-import org.jxls.builder.xls.XlsCommentAreaBuilder;
-import org.jxls.common.CellRef;
-import org.jxls.common.Context;
-import org.jxls.transform.Transformer;
-import org.jxls.util.TransformerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.math.BigDecimal;
-import java.util.*;
+import com.example.jxls.bean.Person;
+import com.example.jxls.view.JxlsExcelView;
 
 @Controller
 @EnableAutoConfiguration
@@ -30,43 +22,32 @@ public class JxlsController {
 
     @GetMapping("/export/jxls1")
     public ModelAndView jxls1() {
-        
+
         Map<String, Object> map = new HashMap<String, Object>();
         
      // テストデータの準備
-    	List<Person> personList = new ArrayList<Person>();
-    	personList.add(new Person("A","M",new BigDecimal(10)));
-    	personList.add(new Person("B","F",new BigDecimal(20)));
-    	personList.add(new Person("C","M",new BigDecimal(30)));
+//    	List<Person> personList = new ArrayList<Person>();
+    	
+//    	map.put("headers", Arrays.asList("Name" , "Gender" , "Age"));
+//    	for(int i=0; i < 1000; i++) {
+//    		personList.add(new Person("A1A2A3A1A2A3A1A2A3A1A2A3A1A2A3A1A2A3","MAN",new BigDecimal(1000.123)));
+//    	}
+    	
+//    	map.put("headers", Arrays.asList("コラム" , "Gender" , "Age"));
+    	List<String> headerlist=new ArrayList<String>();
     	
     	List<List<Object>> dataList = new ArrayList<List<Object>>();
-    	for (Person p:personList) {
-    		List<Object> tmpList = new ArrayList<Object>();
-    		tmpList.add(p.getName());
-    		tmpList.add(p.getGender());
-    		tmpList.add(p.getAge());
-    		dataList.add(tmpList);
+    	List<Object> tmpDataList = new ArrayList<Object>();
+    	for(int y=0; y<30;y++) {
+    		headerlist.add("コラム"+y);
+    		tmpDataList.add("value"+y);
     	}
-    	map.put("headers", Arrays.asList("Name" , "Gender" , "Age"));
-        map.put("dataList", dataList);
-        
-        return new ModelAndView(new JxlsExcelView("templates/template01.xlsx", "result1"), map);
-        
-        
-        
-    }
-    
-//    @GetMapping("/export/jxls2")
-//    public ModelAndView jxls2() {
-//    	
-//    	// テストデータの準備
-//    	List<Person> personList = new ArrayList<Person>();
-//    	personList.add(new Person("A","M",new BigDecimal(10)));
-//    	personList.add(new Person("B","F",new BigDecimal(20)));
-//    	personList.add(new Person("C","M",new BigDecimal(30)));
-//    	personList.add(new Person("D","M",new BigDecimal(40)));
-//    	personList.add(new Person("E","M",new BigDecimal(50)));
-//    	
+    	map.put("headers", headerlist);
+    	
+    	for(int i=0; i < 10000; i++) {
+    		dataList.add(tmpDataList);
+    	}
+    	
 //    	List<List<Object>> dataList = new ArrayList<List<Object>>();
 //    	for (Person p:personList) {
 //    		List<Object> tmpList = new ArrayList<Object>();
@@ -75,35 +56,9 @@ public class JxlsController {
 //    		tmpList.add(p.getAge());
 //    		dataList.add(tmpList);
 //    	}
-//
-//    	// テンプレート
-//        //InputStream is = TestJxls.class.getClass().getResourceAsStream("/templates/template01.xlsx");
-//        FileInputStream is = new FileInputStream(new File("src/main/resources/templates/template01.xlsx"));
-//        Context context = new Context();
-//        context.putVar("headers", Arrays.asList("Name" , "Gender" , "Age"));
-//        context.putVar("dataList", dataList);
-//        OutputStream os = new FileOutputStream(new File("C:\\temp\\result.xlsx"));
-//        // Excelファイルの生成
-//        
-//     // static method call:
-//        
-//        
-//        
-//        Transformer transformer = TransformerFactory.createTransformer(is, os);
-//        AreaBuilder areaBuilder = new XlsCommentAreaBuilder(transformer);
-//        XlsCommentAreaBuilder.addCommandMapping("autoColumnWidth", AutoColumnWidthCommand.class);
-//        List<Area> xlsAreaList = areaBuilder.build();
-//        Area xlsArea = xlsAreaList.get(0);
-////        xlsArea.applyAt(new CellRef("Template!A1"), context);        
-//        xlsArea.applyAt(new CellRef("Sheet1!A1"), context);
-//        transformer.write();
-//        
-//        
-////        XlsCommentAreaBuilder.addCommandMapping("autoColumnWidth", AutoColumnWidthCommand.class);
-////        JxlsHelper.getInstance().processTemplate(is, os, context);
-//        os.flush();
-//        os.close();
-//        is.close();
-//    }
+        map.put("dataList", dataList);
 
+        return new ModelAndView(new JxlsExcelView("templates/template01.xlsx", "result1"), map);
+
+    }
 }
