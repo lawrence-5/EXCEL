@@ -1,4 +1,4 @@
-package com.example.jxls.bean;
+package com.example.bean;
 import java.math.BigDecimal;
 
 public class Person30 {

@@ -1,4 +1,4 @@
-package com.example.excella.bean;
+package com.example;
 
 import java.util.Calendar;
 import java.util.Date;

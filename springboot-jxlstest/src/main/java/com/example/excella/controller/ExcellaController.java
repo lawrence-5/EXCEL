@@ -1,10 +1,10 @@
 package com.example.excella.controller;
 
+import com.example.bean.Person;
+import com.example.bean.Person30;
 import com.example.excella.view.ExcellaExcelView;
 import com.example.excella.view.OutputStreamExporter;
 import com.example.excella.view.RowColLoopParamParser;
-import com.example.jxls.bean.Person;
-import com.example.jxls.bean.Person30;
 
 import org.bbreak.excella.reports.exporter.ExcelExporter;
 import org.bbreak.excella.reports.exporter.ExcelOutputStreamExporter;

@@ -1,6 +1,6 @@
 package com.example.jxls.controller;
 
-import com.example.jxls.bean.Person;
+import com.example.bean.Person;
 import com.example.jxls.view.AutoColumnWidthCommand;
 import com.example.jxls.view.JxlsExcelView;
 
