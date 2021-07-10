@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui">
+  <ribbon startFromScratch="false">
+    <tabs>
+      <tab id="tab1" label="tab label" keytip="S">
+        <group id="group1" label="group label" keytip="A">
+          <button id="button1" label="button label" imageMso="HappyFace" keytip="H" size="large"  onAction="onAction" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
